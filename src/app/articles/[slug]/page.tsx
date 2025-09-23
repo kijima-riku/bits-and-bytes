@@ -103,12 +103,10 @@ export default async function Page({
                     ))}
                   </div>
                 </header>
-                <div className="prose prose-invert prose-lg max-w-none">
-                  <div
-                    className="text-foreground leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                  />
-                </div>
+                <div
+                  className="prose prose-invert prose-lg max-w-none"
+                  dangerouslySetInnerHTML={{ __html: html }}
+                />
               </article>
             </div>
           </div>
