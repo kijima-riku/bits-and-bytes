@@ -104,7 +104,7 @@ export default async function Page({
                   </div>
                 </header>
                 <div
-                  className="prose prose-invert prose-lg max-w-none"
+                  className="prose prose-lg max-w-none dark:prose-invert"
                   dangerouslySetInnerHTML={{ __html: html }}
                 />
               </article>
