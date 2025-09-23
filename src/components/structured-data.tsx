@@ -1,7 +1,12 @@
 import Script from "next/script"
 
+type Json =
+    | string | number | boolean | null
+    | { [key: string]: Json }
+    | Json[]
+
 interface StructuredDataProps {
-    data: Record<string, any>
+    data: Json
 }
 
 export function StructuredData({ data }: StructuredDataProps) {
