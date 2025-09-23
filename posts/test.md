@@ -16,3 +16,5 @@ tags: ["career", "strategy", "Canada"]
 ##### Java
 
 **Rust**
+
+![Cover](/posts/trieste.JPG)
