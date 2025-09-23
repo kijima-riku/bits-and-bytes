@@ -2,37 +2,30 @@ import { notFound } from 'next/navigation'
 import { formatDistanceToNow } from 'date-fns'
 import { TechBadge } from '@/components/tech-badge'
 import { StructuredData } from '@/components/structured-data'
-import {
-  getArticleBySlug,
-  getArticleContent,
-  getArticles,
-} from '@/lib/articles'
 import { generateSEO } from '@/lib/seo'
 import { generateArticleStructuredData } from '@/lib/structured-data'
+import { getArticles, getArticleBySlug } from '@/lib/articles'
+import { getArticleHtml } from '@/lib/articleContents'
 
-interface ArticlePageProps {
-  params: {
-    slug: string
-  }
-}
+export const revalidate = 60
 
 export async function generateStaticParams() {
-  const articles = getArticles()
-  return articles.map((article) => ({
-    slug: article.slug,
-  }))
+  return getArticles().map((a) => ({ slug: a.slug }))
 }
 
-export async function generateMetadata({ params }: ArticlePageProps) {
-  const article = getArticleBySlug(params.slug)
-
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const article = getArticleBySlug(slug)
   if (!article) {
     return generateSEO({
       title: 'Article Not Found',
       description: 'The requested article could not be found.',
     })
   }
-
   return generateSEO({
     title: `${article.title} | Tech Blog`,
     description: article.description,
@@ -57,16 +50,20 @@ const tagColors = {
   Testing: 'orange',
 } as const
 
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = getArticleBySlug(params.slug)
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const article = getArticleBySlug(slug)
+  if (!article) return notFound()
+  const html = await getArticleHtml(slug)
+  if (!html) return notFound()
 
-  if (!article) {
-    notFound()
-  }
-
-  const content = getArticleContent(params.slug)
-  const publishedDate = new Date(article.publishedAt)
-  const timeAgo = formatDistanceToNow(publishedDate, { addSuffix: true })
+  const timeAgo = formatDistanceToNow(new Date(article.publishedAt), {
+    addSuffix: true,
+  })
 
   return (
     <>
@@ -80,18 +77,20 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   <h1 className="text-3xl font-bold text-foreground text-balance">
                     {article.title}
                   </h1>
-
                   <p className="text-lg text-muted-foreground text-pretty">
                     {article.description}
                   </p>
-
                   <div className="flex items-center justify-between text-sm text-muted-foreground">
                     <div className="flex items-center space-x-4">
-                      <time dateTime={article.publishedAt}>{timeAgo}</time>
+                      <time
+                        dateTime={article.publishedAt}
+                        suppressHydrationWarning
+                      >
+                        {timeAgo}
+                      </time>
                       <span>{article.readingTime}</span>
                     </div>
                   </div>
-
                   <div className="flex flex-wrap gap-2">
                     {article.tags.map((tag) => (
                       <TechBadge
@@ -104,13 +103,10 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                     ))}
                   </div>
                 </header>
-
                 <div className="prose prose-invert prose-lg max-w-none">
                   <div
                     className="text-foreground leading-relaxed"
-                    dangerouslySetInnerHTML={{
-                      __html: content.replace(/\n/g, '<br />'),
-                    }}
+                    dangerouslySetInnerHTML={{ __html: html }}
                   />
                 </div>
               </article>
