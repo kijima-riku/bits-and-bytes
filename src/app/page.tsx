@@ -1,37 +1,12 @@
-import { Navigation } from "@/components/navigation"
-import { SocialLinks } from "@/components/social-links"
 import { TechBadge } from "@/components/tech-badge"
-import { AnimatedText } from "@/components/animated-text"
+import {TwoColumnLayout} from "@/components/two-column-layout";
 
 export default function HomePage() {
     return (
+        <TwoColumnLayout>
         <div className="min-h-screen bg-background">
             <div className="max-w-6xl mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Left sidebar */}
-                    <div className="lg:col-span-1">
-                        <div className="sticky top-12">
-                            <div className="space-y-8">
-                                <div>
-                                    <h1 className="text-3xl font-bold text-foreground mb-2">
-                                        <AnimatedText text="Your Name" />
-                                    </h1>
-                                    <p className="text-lg text-muted-foreground mb-4">
-                                        <AnimatedText text="Software Engineer" delay={1000} />
-                                    </p>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                        Building scalable web applications and sharing insights about modern development practices.
-                                    </p>
-                                </div>
-
-                                <Navigation />
-
-                                <SocialLinks />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Main content */}
                     <div className="lg:col-span-2">
                         <div className="space-y-8">
                             <section className="group">
@@ -81,5 +56,6 @@ export default function HomePage() {
                 </div>
             </div>
         </div>
+        </TwoColumnLayout>
     )
 }

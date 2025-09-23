@@ -1,14 +1,11 @@
 import { notFound } from "next/navigation"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
 import { formatDistanceToNow } from "date-fns"
-import { Navigation } from "@/components/navigation"
-import { SocialLinks } from "@/components/social-links"
 import { TechBadge } from "@/components/tech-badge"
 import { StructuredData } from "@/components/structured-data"
 import { getArticleBySlug, getArticleContent, getArticles } from "@/lib/articles"
 import { generateSEO } from "@/lib/seo"
 import { generateArticleStructuredData } from "@/lib/structured-data"
+import {TwoColumnLayout} from "@/components/two-column-layout";
 
 interface ArticlePageProps {
     params: {
@@ -71,35 +68,10 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     return (
         <>
             <StructuredData data={generateArticleStructuredData(article)} />
-
+            <TwoColumnLayout>
             <div className="min-h-screen bg-background">
                 <div className="max-w-6xl mx-auto px-6 py-12">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                        {/* Left sidebar */}
-                        <div className="lg:col-span-1">
-                            <div className="sticky top-12">
-                                <div className="space-y-8">
-                                    <div>
-                                        <Link
-                                            href="/articles"
-                                            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 mb-6"
-                                        >
-                                            <ArrowLeft className="h-4 w-4 mr-2" />
-                                            Back to articles
-                                        </Link>
-
-                                        <h1 className="text-3xl font-bold text-foreground mb-2">Your Name</h1>
-                                        <p className="text-lg text-muted-foreground mb-4">Software Engineer</p>
-                                    </div>
-
-                                    <Navigation />
-
-                                    <SocialLinks />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Main content */}
                         <div className="lg:col-span-2">
                             <article className="space-y-8">
                                 <header className="space-y-4">
@@ -132,6 +104,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                     </div>
                 </div>
             </div>
+            </TwoColumnLayout>
         </>
     )
 }
