@@ -1,6 +1,5 @@
 import { ProjectCard } from "@/components/project-card"
 import { getProjects, getFeaturedProjects } from "@/lib/projects"
-import {TwoColumnLayout} from "@/components/two-column-layout";
 
 export const metadata = {
     title: "Projects | Tech Blog",
@@ -13,7 +12,6 @@ export default function ProjectsPage() {
     const otherProjects = allProjects.filter((project) => !project.featured)
 
     return (
-        <TwoColumnLayout>
         <div className="min-h-screen bg-background">
             <div className="max-w-6xl mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -47,6 +45,5 @@ export default function ProjectsPage() {
                 </div>
             </div>
         </div>
-        </TwoColumnLayout>
     )
 }

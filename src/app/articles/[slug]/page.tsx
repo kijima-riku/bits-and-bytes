@@ -5,7 +5,6 @@ import { StructuredData } from "@/components/structured-data"
 import { getArticleBySlug, getArticleContent, getArticles } from "@/lib/articles"
 import { generateSEO } from "@/lib/seo"
 import { generateArticleStructuredData } from "@/lib/structured-data"
-import {TwoColumnLayout} from "@/components/two-column-layout";
 
 interface ArticlePageProps {
     params: {
@@ -68,7 +67,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     return (
         <>
             <StructuredData data={generateArticleStructuredData(article)} />
-            <TwoColumnLayout>
             <div className="min-h-screen bg-background">
                 <div className="max-w-6xl mx-auto px-6 py-12">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -104,7 +102,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                     </div>
                 </div>
             </div>
-            </TwoColumnLayout>
         </>
     )
 }

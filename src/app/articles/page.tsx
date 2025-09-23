@@ -1,6 +1,5 @@
 import { ArticleCard } from "@/components/article-card"
 import { getArticles } from "@/lib/articles"
-import {TwoColumnLayout} from "@/components/two-column-layout";
 
 export const metadata = {
     title: "Articles | Tech Blog",
@@ -11,7 +10,6 @@ export default function ArticlesPage() {
     const articles = getArticles()
 
     return (
-        <TwoColumnLayout>
         <div className="min-h-screen bg-background">
             <div className="max-w-6xl mx-auto px-6 py-12">
                     <div className="lg:col-span-2">
@@ -32,6 +30,5 @@ export default function ArticlesPage() {
                     </div>
                 </div>
             </div>
-        </TwoColumnLayout>
     )
 }

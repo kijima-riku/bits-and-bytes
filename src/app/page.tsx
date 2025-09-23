@@ -1,9 +1,7 @@
 import { TechBadge } from "@/components/tech-badge"
-import {TwoColumnLayout} from "@/components/two-column-layout";
 
 export default function HomePage() {
     return (
-        <TwoColumnLayout>
         <div className="min-h-screen bg-background">
             <div className="max-w-6xl mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -56,6 +54,5 @@ export default function HomePage() {
                 </div>
             </div>
         </div>
-        </TwoColumnLayout>
     )
 }

@@ -1,6 +1,5 @@
 import { TechSkill } from "@/components/tech-skill"
 import { getTechStack } from "@/lib/tech-stack"
-import {TwoColumnLayout} from "@/components/two-column-layout";
 
 export const metadata = {
     title: "Tech Stack | Tech Blog",
@@ -11,7 +10,6 @@ export default function StackPage() {
     const techStack = getTechStack()
 
     return (
-        <TwoColumnLayout>
         <div className="min-h-screen bg-background">
             <div className="max-w-6xl mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -39,6 +37,5 @@ export default function StackPage() {
                 </div>
             </div>
         </div>
-        </TwoColumnLayout>
     )
 }
