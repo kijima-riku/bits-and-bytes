@@ -37,7 +37,7 @@ export default function HomePage() {
                             <section className="group">
                                 <div className="space-y-6 p-6 rounded-lg border border-transparent hover:border-border/50 transition-all duration-300 hover:bg-card/30">
                                     <p className="text-foreground leading-relaxed">
-                                        I'm a software engineer passionate about crafting accessible, performant web applications that blend
+                                        I&#39;m a software engineer passionate about crafting accessible, performant web applications that blend
                                         thoughtful design with robust engineering. My expertise lies at the intersection of frontend
                                         development and system architecture, creating experiences that not only look great but are
                                         meticulously built for performance and scalability.

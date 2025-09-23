@@ -16,7 +16,7 @@ const konamiCode = [
 ]
 
 export function EasterEgg() {
-    const [sequence, setSequence] = useState<string[]>([])
+    const [_sequence, setSequence] = useState<string[]>([])
     const [showEasterEgg, setShowEasterEgg] = useState(false)
 
     useEffect(() => {
