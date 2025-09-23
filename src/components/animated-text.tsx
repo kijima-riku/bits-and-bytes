@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 interface AnimatedTextProps {
   text: string
@@ -8,8 +8,12 @@ interface AnimatedTextProps {
   delay?: number
 }
 
-export function AnimatedText({ text, className = "", delay = 0 }: AnimatedTextProps) {
-  const [displayedText, setDisplayedText] = useState("")
+export function AnimatedText({
+  text,
+  className = '',
+  delay = 0,
+}: AnimatedTextProps) {
+  const [displayedText, setDisplayedText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
@@ -22,6 +26,17 @@ export function AnimatedText({ text, className = "", delay = 0 }: AnimatedTextPr
       return () => clearTimeout(timeout)
     }
   }, [currentIndex, text, delay])
+
+  useEffect(() => {
+    if (currentIndex === text.length && text.length > 0) {
+      const timeout = setTimeout(() => {
+        setDisplayedText('')
+        setCurrentIndex(0)
+      }, 2000)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [currentIndex, text])
 
   return (
     <span className={className}>
