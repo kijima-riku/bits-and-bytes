@@ -66,13 +66,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         )}
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           <div className="flex items-start justify-between">
             <div className="space-y-1">
               <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
                 {project.title}
               </h3>
-              <p className="text-xs text-muted-foreground">{period}</p>
+              <p className="text-sm font-medium text-muted-foreground">
+                {period}
+              </p>
             </div>
 
             <div className="flex items-center space-x-2">
@@ -90,8 +92,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           </div>
 
-          <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
+          <p
+            className="text-base font-medium text-foreground leading-snug"
+            aria-label="Project summary"
+          >
             {project.description}
+          </p>
+
+          <div className="h-px bg-border/60" />
+
+          <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
+            {project.longDescription}
           </p>
 
           <div className="flex flex-wrap gap-2">
