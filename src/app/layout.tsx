@@ -6,7 +6,6 @@ import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Suspense } from 'react'
 import { FloatingElements } from '@/components/floating-elements'
-import { CursorFollower } from '@/components/cursor-follower'
 import { StructuredData } from '@/components/structured-data'
 import { Sidebar } from '@/components/sidebar' // ← 追加
 import { generateSEO } from '@/lib/seo'
@@ -40,7 +39,6 @@ export default function RootLayout({
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
       >
         <FloatingElements />
-        <CursorFollower />
         <div className="min-h-screen bg-background">
           <div className="max-w-6xl mx-auto px-6 py-12">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
