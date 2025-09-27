@@ -15,7 +15,6 @@ export function FloatingElements() {
   const [elements, setElements] = useState<FloatingElement[]>([])
 
   useEffect(() => {
-    // Create floating elements
     const newElements: FloatingElement[] = Array.from(
       { length: 6 },
       (_, i) => ({
