@@ -25,9 +25,9 @@ export default function ProjectsPage() {
                   problem-solving approach.
                 </p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6">
                   {projects.map((project) => (
-                    <ProjectCard key={project.id} project={project} featured />
+                    <ProjectCard key={project.id} project={project} />
                   ))}
                 </div>
               </div>

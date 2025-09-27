@@ -4,10 +4,14 @@ export interface Project {
   description: string
   longDescription: string
   technologies: string[]
-  githubUrl?: string
   liveUrl?: string
   imageUrl?: string
-  year: string
+  start: string
+  end?: string
+}
+
+function sortByStartDesc(a: Project, b: Project) {
+  return b.start.localeCompare(a.start)
 }
 
 export const projects: Project[] = [
@@ -26,7 +30,7 @@ export const projects: Project[] = [
       'RPC',
       'Locking',
     ],
-    year: '2025',
+    start: '2025-01',
   },
   {
     id: 'escooter-rental',
@@ -36,12 +40,15 @@ export const projects: Project[] = [
     longDescription:
       'Aug 2023 – Sep 2024. Built the backend APIs for the rental mobile application in PHP. Proposed and led the admin dashboard from 0→1, handling everything end-to-end: React.js frontend, PHP backend, and MySQL schema. Covered authentication, rental/return flows, fleet and pricing management, and basic analytics for operators.',
     technologies: ['PHP', 'React.js', 'MySQL', 'REST API'],
-    year: '2023',
+    start: '2023-08',
+    end: '2024-09',
   },
-]
+].sort(sortByStartDesc)
 
 export function getProjects(): Project[] {
-  return projects.sort(
-    (a, b) => Number.parseInt(b.year) - Number.parseInt(a.year),
-  )
+  return [...projects].sort(sortByStartDesc)
+}
+
+export function getProjectById(id: string): Project | undefined {
+  return projects.find((p) => p.id === id)
 }
