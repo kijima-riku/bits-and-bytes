@@ -7,7 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Suspense } from 'react'
 import { FloatingElements } from '@/components/floating-elements'
 import { StructuredData } from '@/components/structured-data'
-import { Sidebar } from '@/components/sidebar' // ← 追加
+import { Sidebar } from '@/components/sidebar'
 import { generateSEO } from '@/lib/seo'
 import {
   generateWebsiteStructuredData,
