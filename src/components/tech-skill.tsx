@@ -19,7 +19,7 @@ export function TechSkill({ technology }: TechSkillProps) {
         <div className="space-y-1">
           <h3 className="font-semibold text-foreground">{technology.name}</h3>
           <p className="text-xs text-muted-foreground">
-            {technology.years} years experience
+            {technology.years} years
           </p>
         </div>
         <TechBadge
