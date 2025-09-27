@@ -5,7 +5,6 @@ import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Suspense } from 'react'
-import { ScrollProgress } from '@/components/scroll-progress'
 import { FloatingElements } from '@/components/floating-elements'
 import { CursorFollower } from '@/components/cursor-follower'
 import { StructuredData } from '@/components/structured-data'
@@ -40,7 +39,6 @@ export default function RootLayout({
       <body
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
       >
-        <ScrollProgress />
         <FloatingElements />
         <CursorFollower />
         <div className="min-h-screen bg-background">
