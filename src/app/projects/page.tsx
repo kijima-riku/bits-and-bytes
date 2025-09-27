@@ -1,5 +1,5 @@
 import { ProjectCard } from '@/components/project-card'
-import { getProjects, getFeaturedProjects } from '@/lib/projects'
+import { getProjects } from '@/lib/projects'
 
 export const metadata = {
   title: 'Projects | Tech Blog',
@@ -8,9 +8,7 @@ export const metadata = {
 }
 
 export default function ProjectsPage() {
-  const featuredProjects = getFeaturedProjects()
-  const allProjects = getProjects()
-  const otherProjects = allProjects.filter((project) => !project.featured)
+  const projects = getProjects()
 
   return (
     <div className="min-h-screen bg-background">
@@ -27,25 +25,12 @@ export default function ProjectsPage() {
                   problem-solving approach.
                 </p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {featuredProjects.map((project) => (
-                    <ProjectCard key={project.id} project={project} featured />
+                <div className="grid grid-cols-1 gap-6">
+                  {projects.map((project) => (
+                    <ProjectCard key={project.id} project={project} />
                   ))}
                 </div>
               </div>
-
-              {otherProjects.length > 0 && (
-                <div>
-                  <h2 className="text-xl font-bold text-foreground mb-6">
-                    Other Projects
-                  </h2>
-                  <div className="grid grid-cols-1 gap-6">
-                    {otherProjects.map((project) => (
-                      <ProjectCard key={project.id} project={project} />
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

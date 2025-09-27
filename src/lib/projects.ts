@@ -4,110 +4,51 @@ export interface Project {
   description: string
   longDescription: string
   technologies: string[]
-  githubUrl?: string
   liveUrl?: string
   imageUrl?: string
-  featured: boolean
-  year: string
+  start: string
+  end?: string
+}
+
+function sortByStartDesc(a: Project, b: Project) {
+  return b.start.localeCompare(a.start)
 }
 
 export const projects: Project[] = [
   {
-    id: 'ecommerce-platform',
-    title: 'E-commerce Platform',
+    id: 'enterprise-chat-backend',
+    title: 'Enterprise Chat Application — Backend Development',
     description:
-      'Full-stack e-commerce solution with modern payment integration and admin dashboard.',
+      'Backend feature development for a business chat application (Java / MySQL / TypeScript).',
     longDescription:
-      'A comprehensive e-commerce platform built with Next.js and TypeScript, featuring user authentication, product management, shopping cart functionality, and Stripe payment integration. The admin dashboard provides real-time analytics and inventory management capabilities.',
+      'Jan 2025 – Present. Responsible for end-to-end backend feature development in a business chat platform. Work includes query analysis and optimization during new feature delivery, WebSocket RPC event design and implementation, and concurrency control with both optimistic and pessimistic locking. Collaborated across API, database schema, and TypeScript-facing contracts to ensure reliable real-time messaging.',
     technologies: [
-      'Next.js',
+      'Java',
+      'MySQL',
       'TypeScript',
-      'Prisma',
-      'PostgreSQL',
-      'Stripe',
-      'Tailwind CSS',
+      'WebSocket',
+      'RPC',
+      'Locking',
     ],
-    githubUrl: 'https://github.com/yourusername/ecommerce-platform',
-    liveUrl: 'https://ecommerce-demo.vercel.app',
-    imageUrl: '/modern-ecommerce-dashboard.png',
-    featured: true,
-    year: '2024',
+    start: '2025-01',
   },
   {
-    id: 'task-management-app',
-    title: 'Task Management App',
+    id: 'escooter-rental',
+    title: 'E-Scooter Rental Service',
     description:
-      'Collaborative task management application with real-time updates and team features.',
+      'Rental mobile app backend (PHP) and admin dashboard (React frontend + PHP backend) with MySQL.',
     longDescription:
-      'A modern task management application inspired by tools like Notion and Linear. Features include drag-and-drop task organization, real-time collaboration, team workspaces, and advanced filtering capabilities. Built with a focus on performance and user experience.',
-    technologies: [
-      'React',
-      'Node.js',
-      'Socket.io',
-      'MongoDB',
-      'Express',
-      'Material-UI',
-    ],
-    githubUrl: 'https://github.com/yourusername/task-manager',
-    liveUrl: 'https://taskmanager-demo.vercel.app',
-    imageUrl: '/task-management-dashboard.png',
-    featured: true,
-    year: '2023',
+      'Aug 2023 – Sep 2024. Built the backend APIs for the rental mobile application in PHP. Proposed and led the admin dashboard from 0→1, handling everything end-to-end: React.js frontend, PHP backend, and MySQL schema. Covered authentication, rental/return flows, fleet and pricing management, and basic analytics for operators.',
+    technologies: ['PHP', 'React.js', 'MySQL', 'REST API'],
+    start: '2023-08',
+    end: '2024-09',
   },
-  {
-    id: 'weather-analytics',
-    title: 'Weather Analytics Dashboard',
-    description:
-      'Data visualization dashboard for weather patterns and climate analysis.',
-    longDescription:
-      'An interactive dashboard for visualizing weather data and climate trends. Features include historical data analysis, predictive modeling, and customizable charts. Integrates with multiple weather APIs to provide comprehensive meteorological insights.',
-    technologies: [
-      'Vue.js',
-      'D3.js',
-      'Python',
-      'FastAPI',
-      'PostgreSQL',
-      'Docker',
-    ],
-    githubUrl: 'https://github.com/yourusername/weather-analytics',
-    imageUrl: '/weather-data-visualization-dashboard.jpg',
-    featured: false,
-    year: '2023',
-  },
-  {
-    id: 'ai-content-generator',
-    title: 'AI Content Generator',
-    description:
-      'AI-powered content generation tool for marketing and creative writing.',
-    longDescription:
-      "A sophisticated content generation platform leveraging OpenAI's GPT models. Features include template-based generation, tone adjustment, SEO optimization suggestions, and batch processing capabilities. Designed for content creators and marketing teams.",
-    technologies: [
-      'Next.js',
-      'OpenAI API',
-      'Supabase',
-      'Vercel AI SDK',
-      'Tailwind CSS',
-    ],
-    githubUrl: 'https://github.com/yourusername/ai-content-generator',
-    liveUrl: 'https://ai-content-demo.vercel.app',
-    imageUrl: '/ai-content-generation-interface.jpg',
-    featured: true,
-    year: '2024',
-  },
-]
+].sort(sortByStartDesc)
 
 export function getProjects(): Project[] {
-  return projects.sort(
-    (a, b) => Number.parseInt(b.year) - Number.parseInt(a.year),
-  )
-}
-
-export function getFeaturedProjects(): Project[] {
-  return projects
-    .filter((project) => project.featured)
-    .sort((a, b) => Number.parseInt(b.year) - Number.parseInt(a.year))
+  return [...projects].sort(sortByStartDesc)
 }
 
 export function getProjectById(id: string): Project | undefined {
-  return projects.find((project) => project.id === id)
+  return projects.find((p) => p.id === id)
 }
